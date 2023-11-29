@@ -82,7 +82,7 @@ class FirstSectionSign extends StatelessWidget {
                   // if (globalKey.currentState!.validate()) {
                   await BlocProvider.of<AuthCubit>(context)
                       .logIn(Email: email!, Passwaord: password!);
-                                              GoRouter.of(context).push(AppRouter.CartViwe);
+                  GoRouter.of(context).push(AppRouter.CartViwe);
 
                   print("sucess");
                   // scnackBar(context, "success");
