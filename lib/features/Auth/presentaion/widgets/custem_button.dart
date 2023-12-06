@@ -4,7 +4,6 @@ import 'package:new_ecomerce/core/utils/Style.dart';
 class CustemTextButton extends StatelessWidget {
   const CustemTextButton({
     super.key,
-    
     this.onPressed,
   });
   final void Function()? onPressed;

@@ -7,14 +7,12 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
-  String? Email;
-  String? Passwaord;
   AuthCubit() : super(AuthInitial());
-  Future<void> logIn({required String Email, required String Passwaord}) async {
+  Future<void> logIn({required String email, required String passwaord}) async {
     emit(LoginCubitLoading());
     try {
       UserCredential user = await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: Email, password: Passwaord);
+          .signInWithEmailAndPassword(email: email, password: passwaord);
       emit(LoginCubitSuccess());
     } on FirebaseAuthException catch (ex) {
       if (ex.code == 'user-not-found') {
@@ -36,30 +34,27 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> register(
-      {required String Email, required String Passwaord}) async {
+      {required String email, required String passwaord}) async {
     emit(RegisterCubitLoading());
     try {
       UserCredential credential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: Email,
-        password: Passwaord,
+        email: email,
+        password: passwaord,
       );
       emit(RegisterCubitSuccess());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         emit(RegisterCubitFailler(errorMessage: 'weak password'));
       } else if (e.code == 'email-already-in-use') {
-        emit(
-          RegisterCubitFailler(
-              errorMessage:
-                  'The account already exists for that email. Try another email address'),
-        );
+        emit(RegisterCubitFailler(
+            errorMessage:
+                'The account already exists for that email. Try another email address'));
       }
     } catch (e) {
       emit(RegisterCubitFailler(errorMessage: 'something went wrong'));
     }
   }
-
 
   // ================ signin with googel
   Future<UserCredential> signInWithGoogle() async {
@@ -81,15 +76,16 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   // ======signin with facebook
-  
-Future<UserCredential> signInWithFacebook() async {
-  // Trigger the sign-in flow
-  final LoginResult loginResult = await FacebookAuth.instance.login();
 
-  // Create a credential from the access token
-  final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.token);
+  Future<UserCredential> signInWithFacebook() async {
+    // Trigger the sign-in flow
+    final LoginResult loginResult = await FacebookAuth.instance.login();
 
-  // Once signed in, return the UserCredential
-  return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
-}
+    // Create a credential from the access token
+    final OAuthCredential facebookAuthCredential =
+        FacebookAuthProvider.credential(loginResult.accessToken!.token);
+
+    // Once signed in, return the UserCredential
+    return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
+  }
 }

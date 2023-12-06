@@ -10,8 +10,10 @@ class SignInBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Column(
-        children: [FirstSectionSign(), const SecondSectionSign()],
+      child: SingleChildScrollView(
+        child: Column(
+          children: [FirstSectionSign(), const SecondSectionSign()],
+        ),
       ),
     );
   }

@@ -14,23 +14,30 @@ class ButtonNavBar extends StatelessWidget {
         onTabChange: (index) {
           print(index);
           switch (index) {
+            case 0:
+              GoRouter.of(context).push(AppRouter.HomeViwe);
+              break;
+            case 1:
+              GoRouter.of(context).push(AppRouter.CartViwe);
+              break;
             case 2:
               GoRouter.of(context).push(AppRouter.ProfileViwe);
+              break;
           }
         },
         gap: 8,
         tabs: const [
           GButton(
             icon: FontAwesomeIcons.houseChimneyWindow,
-            text: "home",
+            // text: "home",
           ),
           GButton(
             icon: FontAwesomeIcons.cartArrowDown,
-            text: "Cart",
+            // text: "Cart",
           ),
           GButton(
             icon: FontAwesomeIcons.user,
-            text: "Profile",
+            // text: "Profile",
           ),
         ]);
   }

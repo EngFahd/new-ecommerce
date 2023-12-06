@@ -22,13 +22,16 @@ class FirstSectionSign extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(top: 25),
       // color: Colors.red,
-      decoration: BoxDecoration(color: Colors.white, boxShadow: [
-        BoxShadow(
-            blurRadius: 40,
-            color: Colors.black.withOpacity(0.1),
-            spreadRadius: 0,
-            offset: const Offset(5, 0))
-      ]),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+              blurRadius: 40,
+              color: Colors.black.withOpacity(0.1),
+              spreadRadius: 0,
+              offset: const Offset(5, 0))
+        ],
+      ),
 
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
@@ -68,7 +71,7 @@ class FirstSectionSign extends StatelessWidget {
                   const Spacer(),
                   GestureDetector(
                       onTap: () {
-                        GoRouter.of(context).push(AppRouter.CartViwe);
+                        GoRouter.of(context).push(AppRouter.registerViwe);
                       },
                       child: const Text("Forgot Password?",
                           style: Style.textStyle14))
@@ -81,7 +84,7 @@ class FirstSectionSign extends StatelessWidget {
                 onPressed: () async {
                   // if (globalKey.currentState!.validate()) {
                   await BlocProvider.of<AuthCubit>(context)
-                      .logIn(Email: email!, Passwaord: password!);
+                      .logIn(email: email!, passwaord: password!);
                   GoRouter.of(context).push(AppRouter.CartViwe);
 
                   print("sucess");

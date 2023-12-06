@@ -1,5 +1,5 @@
 import 'package:go_router/go_router.dart';
-import 'package:new_ecomerce/Cart/presntaion/view/Cart.dart';
+import 'package:new_ecomerce/features/Cart/presntaion/view/Cart.dart';
 import 'package:new_ecomerce/features/Auth/presentaion/register-viwe.dart';
 import 'package:new_ecomerce/features/Auth/presentaion/signIn-viwe.dart';
 
